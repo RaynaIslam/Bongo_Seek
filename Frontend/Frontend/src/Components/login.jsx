@@ -1,6 +1,9 @@
+
+
 import React, { useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 //import { FaFacebook } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Login() {
   const [form, setForm] = useState({
@@ -35,6 +38,7 @@ function Login() {
               type="email"
               name="email"
               className="input input-bordered w-full p-3 border rounded-lg"
+              placeholder="আপনার ইমেইল লিখুন"
               value={form.email}
               onChange={handleChange}
               required
@@ -49,12 +53,14 @@ function Login() {
               type="password"
               name="password"
               className="input input-bordered w-full p-3 border rounded-lg"
+              placeholder="আপনার পাসওয়ার্ড লিখুন"
               value={form.password}
               onChange={handleChange}
               required
             />
             <a href="#" className="text-blue-500 text-sm text-right block mt-2">পাসওয়ার্ড ভুলে গেছেন?</a>
           </div>
+
           <div className="form-control mt-6">
             <button className="btn bg-green-600 hover:bg-green-700 text-white w-full py-3 rounded-lg">লগইন করুন</button>
           </div>
@@ -67,15 +73,9 @@ function Login() {
             <FcGoogle className="mr-2 text-xl" /> গুগল দিয়ে লগইন করুন
           </button>
         </div>
-        
-        {/* <div className="form-control mt-2">
-          <button className="btn btn-outline flex items-center justify-center w-full py-3 border rounded-lg">
-            <FaFacebook className="mr-2 text-blue-600 text-xl" /> ফেসবুক দিয়ে লগইন করুন
-          </button>
-        </div> */}
-        
+
         <p className="text-center text-gray-500 mt-4">
-          আপনার কি অ্যাকাউন্ট নেই? <a href="#" className="text-blue-500">সাইন আপ করুন</a>
+          আপনার কি অ্যাকাউন্ট নেই? <Link to="/signup" className="text-blue-500">সাইন আপ করুন</Link>
         </p>
       </div>
     </div>
