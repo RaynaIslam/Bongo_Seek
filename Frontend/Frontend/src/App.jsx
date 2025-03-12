@@ -1,42 +1,24 @@
-// import React from 'react'
-// import { Routes, Route, Link } from 'react-router-dom'
-// import Signup from './Components/Signup'
-// import "./App.css"
-// import Login from './Components/login'
-// import HomePage from './Components/home'
+import React from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
+import Signup from './Components/Signup'
+import "./App.css"
+import Login from './Components/login'
+import HomePage from './Components/home'
+import ChatPage from './Components/ChatPage'
 
-// function App() {
-//   return (
-//     <div>
-//       {/* Show HomePage only on the "/" route */}
-//       {location.pathname === '/' && <HomePage />}
-
-//       <Routes>
-//         <Route path="/" element={<HomePage />} />
-//         <Route path="/signup" element={<Signup />} />
-//         <Route path="/login" element={<Login />} />
-//       </Routes>
-//     </div>
-  
-//   );
-// }
-
-// export default App
-
-import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Signup from './Components/Signup';
-import './App.css';
-import Login from './Components/login';
-import HomePage from './Components/home';
 
 function App() {
   return (
+    
     <div>
+    <HomePage/>
+    
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/Signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/ChatPage" element={<ChatPage />} />
+        {/* Optional: Default route */}
+        {/* <Route path="*" element={<div className="text-xl text-gray-700">পৃষ্ঠাটি খুঁজে পাওয়া যায়নি</div>} /> */}
       </Routes>
     </div>
   );
