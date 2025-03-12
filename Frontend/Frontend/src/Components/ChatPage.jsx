@@ -1,7 +1,14 @@
 import React from "react";
-import { FiSend } from "react-icons/fi"; // Arrow icon
+import { useNavigate } from "react-router-dom"; // ✅ import navigate hook
+import { FiSend } from "react-icons/fi";
 
 const ChatPage = () => {
+  const navigate = useNavigate(); // ✅ initialize navigate
+
+  const handleLogout = () => {
+    // Optional: clear any auth/session data here
+    navigate("/"); // ✅ redirect to homepage
+};
   return (
     <div className="flex h-screen bg-green-50 text-gray-800">
       {/* Sidebar */}
@@ -21,7 +28,12 @@ const ChatPage = () => {
           <li className="cursor-pointer hover:underline">লাইট মোড</li>
           <li className="cursor-pointer hover:underline">আমার অ্যাকাউন্ট</li>
           <li className="cursor-pointer hover:underline">আপডেট ও প্রায়শই জিজ্ঞাসিত প্রশ্ন</li>
-          <li className="cursor-pointer hover:underline">লগ আউট</li>
+          <li
+            className="cursor-pointer hover:underline text-red-600"
+            onClick={handleLogout} // ✅ log out functionality
+          >
+            লগ আউট
+          </li>
         </ul>
       </div>
 
@@ -87,4 +99,4 @@ const ChatPage = () => {
   );
 };
 
-export default ChatPage;
+export default ChatPage
