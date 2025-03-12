@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-base-200 flex flex-col items-center justify-center p-4">
-      <div className="min-h-screen w-full bg-gradient-to-b from-green-100 to-green-300 flex flex-col items-center justify-center text-center">
-        <nav className="w-full flex justify-end p-4 bg-green-600 text-white">
-          <Link to="/Signup" className="btn btn-primary">সাইন আপ</Link>
-          <Link to="/login" className="btn btn-secondary">লগইন</Link>
-        </nav>
+      <nav className="w-full flex justify-end p-4 bg-green-600 text-white fixed top-0 left-0 right-0 space-x-4">
+        <Link to="/Signup" className="btn btn-primary">সাইন আপ</Link>
+        <Link to="/login" className="btn btn-secondary">লগইন</Link>
+      </nav>
+      <div className="min-h-screen w-full bg-gradient-to-b from-green-100 to-green-300 flex flex-col items-center justify-center text-center pt-16">
         <h1 className="text-5xl font-bold text-green-700 mt-10">অনুসন্ধানী</h1>
         <h2 className="text-2xl text-gray-700 mt-2">অজানার পথে</h2>
         <div className="mt-10 flex gap-6 w-full justify-center">
