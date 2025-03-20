@@ -58,7 +58,18 @@ def generate_text():
     print(f"Prompt received: {prompt}")
     result = pipe(prompt, max_length=200, truncation=True)
     return jsonify({"response": result[0]["generated_text"]})
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.json
+    user_prompt = data.get('prompt')
 
+    if not user_prompt:
+        return jsonify({'error': 'Prompt is required'}), 400
+
+   # Replace this with your actual model response
+    response_text = f"AI Response to: {prompt}"  
+
+    return jsonify({"response": response_text})  # Return JSON response
 # Signup route
 @app.route("/signup", methods=["POST"])
 def signup():
