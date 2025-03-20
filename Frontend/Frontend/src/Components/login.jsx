@@ -1,23 +1,35 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "./api"; // Import the login API function
 
 function Login() {
-  const navigate = useNavigate(); // Use useNavigate for routing
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
+  const [error, setError] = useState(""); // To store error messages
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("লগইন তথ্য:", form);
-    alert("লগইন সফল হয়েছে!");
-    navigate("/ChatPage"); // Redirect to ChatPage after login
+    setError(""); // Clear previous errors
+
+    const result = await login(form.email, form.password);
+
+    if (result.error) {
+      setError(result.error);
+    } else {
+      // Store JWT token for authentication
+      localStorage.setItem("token", result.token);
+      alert("✅ লগইন সফল হয়েছে!");
+      navigate("/ChatPage"); // Redirect to ChatPage
+    }
   };
 
   return (
@@ -32,6 +44,9 @@ function Login() {
         <p className="text-center text-gray-500 mb-6">
           লগইন করতে আপনার ইমেইল এবং পাসওয়ার্ড দিন
         </p>
+
+        {error && <p className="text-red-500 text-center">{error}</p>}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="form-control">
             <label className="label">

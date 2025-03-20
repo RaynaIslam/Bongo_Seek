@@ -66,10 +66,16 @@ def chat():
     if not user_prompt:
         return jsonify({'error': 'Prompt is required'}), 400
 
-   # Replace this with your actual model response
-    response_text = f"AI Response to: {prompt}"  
+    try:
+        response = pipe(user_prompt, max_length=200, truncation=True)
+        response_text = response[0]["generated_text"]
+    except Exception as e:
+        print(f"❌ AI Model Error: {e}")
+        return jsonify({"error": "AI Model failed"}), 500
 
-    return jsonify({"response": response_text})  # Return JSON response
+    print(f"AI Response: {response_text}")  # Debugging log
+    return jsonify({"response": response_text})
+
 # Signup route
 @app.route("/signup", methods=["POST"])
 def signup():
