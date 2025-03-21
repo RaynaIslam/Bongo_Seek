@@ -12,6 +12,7 @@ export const signup = async (username, email, password) => {
     });
     return response.data;
   } catch (error) {
+    console.error("Signup API error:", error.response?.data || error.message);
     return error.response?.data || { error: "Signup failed" };
   }
 };
@@ -25,6 +26,7 @@ export const login = async (email, password) => {
     });
     return response.data;
   } catch (error) {
+    console.error("Login API error:", error.response?.data || error.message);
     return error.response?.data || { error: "Login failed" };
   }
 };
@@ -35,7 +37,21 @@ export const chatWithAI = async (prompt) => {
     const response = await axios.post(`${API_BASE_URL}/api/chat`, { prompt });
     return response.data;
   } catch (error) {
+    console.error("Chat API error:", error.response?.data || error.message);
     return error.response?.data || { error: "Chat request failed" };
   }
 };
 
+// Verify 2FA
+export async function verify2FA(email, code) {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/Verify2FA`, {
+      email,
+      code,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("2FA API error:", error.response?.data || error.message);
+    return { error: "Server error. Please try again later." };
+  }
+}
